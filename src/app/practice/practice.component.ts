@@ -48,8 +48,10 @@ export class DialogContentExampleDialog {
       this.output = data[0].postName;
     });
     //console.log(this.output)
-    let input = [4,3,6,8,6,8,9,8];
+    let k = 3;
+    let input : any = [1,2,3,3,4,5];
     let count = 0;
+    //console.log(Math.min(...input));
     let map = new Map();
     for(let i = 0; i<input.length;i++){
       if(map.has(input[i])){
@@ -66,5 +68,30 @@ export class DialogContentExampleDialog {
     }
     //console.log(this.output);
     //this.output=count;
+    this.test();
+  }
+
+  test(){
+    let k = 3;
+    let input : any = [5,3,5,7,8];
+    let finalCount=0;
+    let count = 1;
+    let index=0;
+    for(let i=0;i<input.length;i++){
+      if(input[i]<input[i+1]){
+        count++;
+        if(count == k){
+          finalCount++;
+          index++;
+          i = index-1;
+          count = 1;
+        }
+      }
+      else{
+        count = 1;
+        index = i+1;
+      }
+    }
+    console.log(finalCount)
   }
 }
