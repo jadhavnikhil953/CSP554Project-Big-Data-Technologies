@@ -72,7 +72,7 @@ export class DialogContentExampleDialog {
   }
 
   test(){
-    let k = 3;
+    let k = 2;
     let input : any = [5,3,5,7,8];
     let finalCount=0;
     let count = 1;
