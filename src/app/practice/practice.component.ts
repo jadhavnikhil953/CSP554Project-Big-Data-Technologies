@@ -8,21 +8,36 @@ import { DataService } from '../data.service';
   styleUrls: ['./practice.component.css']
 })
 export class PracticeComponent implements OnInit {
+  ELEMENT_DATA: any []= [];
   ouput : any ;
-
-  constructor( private dialogRef : MatDialog) { 
-    //this.fire();
+  orders_all: any[]=[];
+  dataSource = this.ELEMENT_DATA;
+  title : any = 'CSP554';
+  displayedColumns: string[] = ['cust_id', 'ord_date', 'price', 'items'];
+  table_all: boolean = false;
+  constructor( private dialogRef : MatDialog, private dataService: DataService) { 
   }
 
   ngOnInit(): void {
-    this.fire();
   }
 
-  fire(){
-    let dialog = this.dialogRef.open(DialogContentExampleDialog);
-    dialog.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+  getAllOrders(){
+    // This is to display dialog box
+
+    // let dialog = this.dialogRef.open(DialogContentExampleDialog);
+    // dialog.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
+    this.table_all = true;
+    if(this.orders_all.length == 0){
+      this.dataService.getAllOrders({}).subscribe((data:any) =>{
+        this.orders_all = data;
+      });
+    }
+  }
+
+  clearAll(){
+    this.table_all = false;
   }
 
   closeDialogue(){
@@ -46,6 +61,9 @@ export class DialogContentExampleDialog {
   fire(){
     this.dataService.getPosts({postName:"test"}).subscribe((data:any) =>{
       this.output = data[0].postName;
+    });
+    this.dataService.getAllOrders({}).subscribe((data:any) =>{
+      console.log(data);
     });
     //console.log(this.output)
     let k = 3;

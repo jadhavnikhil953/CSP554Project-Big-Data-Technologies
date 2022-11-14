@@ -15,4 +15,8 @@ export class DataService {
     return this.http.request('POST', this.url+'/api/products', 
     {responseType:'json', headers: {'Content-Type': 'application/json'},body:data});
  }
+ getAllOrders(data: any): Observable<any>{
+  return this.http.request('POST', this.url+'/api/getAllOrders', 
+  {responseType:'json', headers: {'Content-Type': 'application/json'},body:data});
+}
 }
