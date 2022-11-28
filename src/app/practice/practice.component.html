@@ -412,7 +412,7 @@
         <span>Get All Orders</span>
       </button>
   
-      <button class="card card-small" (click)="selection.value = 'test'" tabindex="0">
+      <button class="card card-small" (click)="selection.value = 'mapReduce'" tabindex="0" (click)="mapReduce();">
         <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
         <span>MapReduce</span>
       </button>
@@ -430,7 +430,11 @@
         <pre *ngSwitchCase="'material'">ng add @angular/material</pre>
         <pre *ngSwitchCase="'pwa'">ng add @angular/pwa</pre>
         <pre *ngSwitchCase="'dependency'">ng add _____</pre>
-        <pre *ngSwitchCase="'test'">ng test</pre>
+        <pre *ngSwitchCase="'mapReduce'">db.orders.mapReduce(
+          mapFunction(),
+          reduceFunction(),
+          out: inline:1 
+       )</pre>
         <pre *ngSwitchCase="'build'">ng build</pre>
         <pre *ngSwitchCase="'allOrders'">C:\Users\Nikhil> db.orders.find()
                     .projection()
@@ -439,32 +443,32 @@
     </div>
 
     <div style="height: 10px;"></div>
-    
-    <div>
-        <table *ngIf="table_all" style="width: 48%; position: absolute; left: 26%;" mat-table [dataSource]="orders_all" class="mat-elevation-z8">
+    <!-- This is all orders table -->
+    <div *ngIf="table_all">
+        <table style="width: 48%; position: absolute; left: 26%;" mat-table [dataSource]="orders_all" class="mat-elevation-z8">
 
             <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
           
-            <!-- Position Column -->
+            <!-- Name Column -->
             <ng-container matColumnDef="cust_id">
               <th style="width: 25%;" mat-header-cell *matHeaderCellDef> Name </th>
               <td style="width: 25%;" mat-cell *matCellDef="let element"> {{element.cust_id}} </td>
             </ng-container>
           
-            <!-- Name Column -->
+            <!-- Date Column -->
             <ng-container matColumnDef="ord_date">
               <th style="width: 25%;" mat-header-cell *matHeaderCellDef> Order Date </th>
               <td style="width: 25%;" mat-cell *matCellDef="let element">{{element.ord_date | date}} </td>
             </ng-container>
           
-            <!-- Weight Column -->
+            <!-- Price Column -->
             <ng-container matColumnDef="price">
               <th style="width: 25%;" mat-header-cell *matHeaderCellDef> Price </th>
               <td style="width: 25%;" mat-cell *matCellDef="let element"> ${{element.price}} </td>
             </ng-container>
           
-            <!-- Symbol Column -->
+            <!-- Items Column -->
             <ng-container matColumnDef="items">
               <th style="width: 25%;" mat-header-cell *matHeaderCellDef> Items </th>
               <td style="width: 25%;" mat-cell *matCellDef="let element">
@@ -487,6 +491,29 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>     
     </div>
+    <!-- This is map reduce table -->
+    <div *ngIf="mapReduceFlag">
+      <table style="width: 48%; position: absolute; left: 26%;" mat-table [dataSource]="orders_map_reduce" class="mat-elevation-z8">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="cust_id">
+            <th style="width: 50%;" mat-header-cell *matHeaderCellDef> Name </th>
+            <td style="width: 50%;" mat-cell *matCellDef="let element"> {{element._id}} </td>
+          </ng-container>
+        
+          <!-- Value Column -->
+          <ng-container matColumnDef="ord_total">
+            <th style="width: 50%;" mat-header-cell *matHeaderCellDef> Total Amount </th>
+            <td style="width: 50%;" mat-cell *matCellDef="let element">{{element.value}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsMapReduce"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsMapReduce;"></tr>
+        </table>     
+  </div>
   
     <!-- Links -->
     <div class="card-container">

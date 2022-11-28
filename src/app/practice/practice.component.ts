@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import{ MatDialog} from '@angular/material/dialog';
 import { DataService } from '../data.service';
 
@@ -8,13 +8,21 @@ import { DataService } from '../data.service';
   styleUrls: ['./practice.component.css']
 })
 export class PracticeComponent implements OnInit {
+  @ViewChild('chart')
   ELEMENT_DATA: any []= [];
   ouput : any ;
   orders_all: any[]=[];
+  orders_map_reduce: any[]=[];
   dataSource = this.ELEMENT_DATA;
   title : any = 'CSP554';
   displayedColumns: string[] = ['cust_id', 'ord_date', 'price', 'items'];
+  displayedColumnsMapReduce: string[] = ['cust_id', 'ord_total'];
   table_all: boolean = false;
+  mapReduceFlag: boolean = false;
+  chart: any;
+  chartData : any []=[];
+  chartLabel: any[]=[];
+  chartRef:any;
   constructor( private dialogRef : MatDialog, private dataService: DataService) { 
   }
 
@@ -28,6 +36,7 @@ export class PracticeComponent implements OnInit {
     // dialog.afterClosed().subscribe(result => {
     //   console.log(`Dialog result: ${result}`);
     // });
+    this.clearAll();
     this.table_all = true;
     if(this.orders_all.length == 0){
       this.dataService.getAllOrders({}).subscribe((data:any) =>{
@@ -36,8 +45,24 @@ export class PracticeComponent implements OnInit {
     }
   }
 
+  mapReduce(){
+      this.clearAll();
+      this.mapReduceFlag = true;
+      this.dataService.mapReduce({}).subscribe((data:any) =>{
+        console.log(data.results);
+        this.orders_map_reduce = data.results;
+        this.orders_map_reduce.forEach(element => {
+          this.chartData.push(element.value);
+          this.chartLabel.push(element._id);
+        });
+      });
+  }
+
   clearAll(){
+    this.mapReduceFlag = false;
     this.table_all = false;
+    this.chartData=[];
+    this.chartLabel=[];
   }
 
   closeDialogue(){

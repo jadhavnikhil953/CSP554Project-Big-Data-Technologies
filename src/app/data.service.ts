@@ -19,4 +19,8 @@ export class DataService {
   return this.http.request('POST', this.url+'/api/getAllOrders', 
   {responseType:'json', headers: {'Content-Type': 'application/json'},body:data});
 }
+mapReduce(data: any): Observable<any>{
+  return this.http.request('POST', this.url+'/api/mapReduce', 
+  {responseType:'json', headers: {'Content-Type': 'application/json'},body:data});
+}
 }
