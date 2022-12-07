@@ -22,7 +22,29 @@ export class PracticeComponent implements OnInit {
   chart: any;
   chartData : any []=[];
   chartLabel: any[]=[];
-  chartRef:any;
+  chartRef:any;	
+  chartOptions = {
+    title:{
+      text: "Total Impressions by Platforms"
+    },
+    animationEnabled: true,
+    axisY: {
+      includeZero: true,
+      suffix: ""
+    },
+    data: [{
+      type: "bar",
+      indexLabel: "{y}",
+      yValueFormatString: "#,###K",
+      dataPoints: [
+        { label: "Snapchat", y: 15 },
+        { label: "Instagram", y: 20 },
+        { label: "YouTube", y: 24 },
+        { label: "Twitter", y: 29 },
+        { label: "Facebook", y: 73 }
+      ]
+    }]
+  }
   constructor( private dialogRef : MatDialog, private dataService: DataService) { 
   }
 
@@ -49,10 +71,30 @@ export class PracticeComponent implements OnInit {
       this.clearAll();
       this.mapReduceFlag = true;
       this.dataService.mapReduce({}).subscribe((data:any) =>{
-        console.log(data.results);
+
         this.orders_map_reduce = data.results;
+        this.chartOptions = {
+          title:{
+            text: "Data After mapReduce()"
+          },
+          animationEnabled: true,
+          axisY: {
+            includeZero: true,
+            suffix: ""
+          },
+          data: [{
+            type: "bar",
+            indexLabel: "{y}",
+            yValueFormatString: "#,###",
+            dataPoints: []
+          }]
+        }
         this.orders_map_reduce.forEach(element => {
-          this.chartData.push(element.value);
+          let obj = {label:"",y:0};
+          obj.label = element._id;
+          obj.y = element.value;
+          //this.chartData.push(obj);
+          this.chartOptions.data[0].dataPoints.push(obj);
           this.chartLabel.push(element._id);
         });
       });

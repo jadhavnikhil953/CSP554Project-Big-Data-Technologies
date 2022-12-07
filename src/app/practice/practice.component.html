@@ -430,7 +430,7 @@
         <pre *ngSwitchCase="'material'">ng add @angular/material</pre>
         <pre *ngSwitchCase="'pwa'">ng add @angular/pwa</pre>
         <pre *ngSwitchCase="'dependency'">ng add _____</pre>
-        <pre *ngSwitchCase="'mapReduce'">db.orders.mapReduce(
+        <pre *ngSwitchCase="'mapReduce'">C:\Users\Nikhil> db.orders.mapReduce(
           mapFunction(),
           reduceFunction(),
           out: inline:1 
@@ -493,7 +493,8 @@
     </div>
     <!-- This is map reduce table -->
     <div *ngIf="mapReduceFlag">
-      <table style="width: 48%; position: absolute; left: 26%;" mat-table [dataSource]="orders_map_reduce" class="mat-elevation-z8">
+      <canvasjs-chart [options]="chartOptions" [styles]="{width: '48%', position: 'absolute', left: '26%'}"></canvasjs-chart>    
+      <table style="width: 48%; position: absolute; left: 26%; top:900px;" mat-table [dataSource]="orders_map_reduce" class="mat-elevation-z8">
 
           <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
