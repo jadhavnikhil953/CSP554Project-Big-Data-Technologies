@@ -2,6 +2,24 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
 
+## Pre-Requisites: Install the following-
+[Angular CLI]() 
+[MongoDB](https://www.mongodb.com/docs/manual/administration/install-community/)
+[Node.js](https://nodejs.org/en/download/)
+[Express.js](https://expressjs.com/en/starter/installing.html#:~:text=Now%20install%20Express%20in%20the%20myapp%20directory)
+[NoSQLbooster for MongoDB](https://nosqlbooster.com/downloads)
+
+## Follow these steps
+    Clone the Repo (Check out the code to local machine)
+    Create a database “dummy”
+    Run the commands from /src/databaseSetup.txt
+    This will create a table and add entries.
+    Open a terminal at root and run following commands
+        ng build (This will build your project and check for all dependencies)
+        node server.js (This will initialize the express server and host it locally. You can visit http://localhost:4200
+
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
