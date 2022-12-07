@@ -20,6 +20,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Output:
 ![image](https://user-images.githubusercontent.com/95047914/206084549-dd78613a-fbf8-4eb1-a683-3eb141c894b4.png)
+## Database setup:
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/95047914/206084762-0a5e23a4-bea4-48fe-9b97-00f74099e03d.png">
 
 
 ## Development server
