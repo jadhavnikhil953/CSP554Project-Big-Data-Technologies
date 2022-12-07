@@ -3,11 +3,11 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
 
 ## Pre-Requisites: Install the following-
-[Angular CLI]() 
-[MongoDB](https://www.mongodb.com/docs/manual/administration/install-community/)
-[Node.js](https://nodejs.org/en/download/)
-[Express.js](https://expressjs.com/en/starter/installing.html#:~:text=Now%20install%20Express%20in%20the%20myapp%20directory)
-[NoSQLbooster for MongoDB](https://nosqlbooster.com/downloads)
+1. [Angular CLI]() 
+2. [MongoDB](https://www.mongodb.com/docs/manual/administration/install-community/)
+3. [Node.js](https://nodejs.org/en/download/)
+4. [Express.js](https://expressjs.com/en/starter/installing.html#:~:text=Now%20install%20Express%20in%20the%20myapp%20directory)
+5. [NoSQLbooster for MongoDB](https://nosqlbooster.com/downloads)
 
 ## Follow these steps
     Clone the Repo (Check out the code to local machine)
