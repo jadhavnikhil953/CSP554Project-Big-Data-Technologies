@@ -36,7 +36,7 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
-/src/assets/
+/src/assets/canvasjs-3.7.2/examples
 
 # System files
 .DS_Store
